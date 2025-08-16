@@ -1,0 +1,19 @@
+{
+  "name": "reto-sui",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "packageManager": "yarn@3.2.3",
+  "scripts": {
+    "test": "yarn workspace centro_trueque exec sui move test",
+    "build:move": "yarn workspace centro_trueque exec sui move build",
+    "balance": "yarn workspace centro_trueque exec sui client balance",
+    "publish": "yarn workspace centro_trueque exec sui client publish",
+    "publish:mainnet": "yarn workspace centro_trueque exec sui client publish --gas-budget 20000000 --json --mainnet",
+    "dev": "yarn workspace front_trueque dev",
+    "build:next": "yarn workspace front_trueque build",
+    "start": "yarn workspace front_trueque start"
+  }
+}
