@@ -1,9 +1,14 @@
-import { Providers } from "./providers";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { Providers } from "./providers";
+import { ClientLayout } from "@/components/ClientLayout";
 
-export const metadata = {
-  title: "Centro de Trueque - Sui dApp",
-  description: "Intercambia objetos digitales de forma descentralizada",
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: "Guardarropa Digital - Sui Blockchain",
+  description: "Tu guardarropa digital para intercambiar artículos únicos en Sui blockchain",
 };
 
 export default function RootLayout({
@@ -13,8 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>
-        <Providers>{children}</Providers>
+      <body className={inter.className}>
+        <Providers>
+          <ClientLayout>
+            {children}
+          </ClientLayout>
+        </Providers>
       </body>
     </html>
   );

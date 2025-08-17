@@ -1,48 +1,44 @@
-// apps/front-trueque/src/constants/index.ts
-
-// Tu Package ID del contrato desplegado
-export const PACKAGE_ID = process.env.NEXT_PUBLIC_PACKAGE_ID || "0x9efa4d7b8ccfdcb2100ff736768720c9198f3be1b2608ecc5b4fb84e638aafe5";
-
-export const CENTRO_ID = process.env.NEXT_PUBLIC_CENTRO_ID || "0x01faf1bc6f5bcfb8266e767eb86246ec89b5e37946d26a25cf48be6b52193714";
+export const PACKAGE_ID = process.env.NEXT_PUBLIC_PACKAGE_ID;
+export const GUARDARROPA_ID = process.env.NEXT_PUBLIC_GUARDARROPA_ID;
+export const REGISTRO_SOCIOS_ID = process.env.NEXT_PUBLIC_REGISTRO_SOCIOS_ID;
 
 // Módulo del contrato
 export const MODULE_NAME = "centro_trueque";
 
-// Funciones del contrato con la estructura correcta
+// Funciones del contrato
 export const CONTRACT_FUNCTIONS = {
-    CREAR_CENTRO: `${PACKAGE_ID}::${MODULE_NAME}::crear_centro`,
-    CREAR_COLECCIONABLE_CON_RECIBO: `${PACKAGE_ID}::${MODULE_NAME}::crear_coleccionable_con_recibo`,
-    DEPOSITAR_OBJETO: `${PACKAGE_ID}::${MODULE_NAME}::depositar_objeto`,
-    RETIRAR_OBJETO: `${PACKAGE_ID}::${MODULE_NAME}::retirar_objeto`,
-    ACTUALIZAR_NOMBRE_OBJETO: `${PACKAGE_ID}::${MODULE_NAME}::actualizar_nombre_objeto`,
+    // Funciones principales
+    CREAR_GUARDARROPA: `${PACKAGE_ID}::${MODULE_NAME}::crear_guardarropa`,
+    OBTENER_CARNET_SOCIO: `${PACKAGE_ID}::${MODULE_NAME}::obtener_carnet_de_socio`,
+    ALMACENAR_ARTICULO: `${PACKAGE_ID}::${MODULE_NAME}::almacenar_articulo`,
+    RETIRAR_ARTICULO: `${PACKAGE_ID}::${MODULE_NAME}::retirar_articulo`,
+    ACTUALIZAR_NOMBRE_COLECCIONABLE: `${PACKAGE_ID}::${MODULE_NAME}::actualizar_nombre_coleccionable`,
+    
     // Funciones de consulta
-    OBTENER_INFO_OBJETO: `${PACKAGE_ID}::${MODULE_NAME}::obtener_info_objeto`,
-    EXISTE_COLECCIONABLE: `${PACKAGE_ID}::${MODULE_NAME}::existe_coleccionable`,
-    OBTENER_TOTAL_OBJETOS: `${PACKAGE_ID}::${MODULE_NAME}::obtener_total_objetos`,
-    OBTENER_SIGUIENTE_CLAVE: `${PACKAGE_ID}::${MODULE_NAME}::obtener_siguiente_clave`,
-    OBTENER_RECIBOS_ACTIVOS: `${PACKAGE_ID}::${MODULE_NAME}::obtener_recibos_activos`,
+    CONSULTAR_INFO_ARTICULO: `${PACKAGE_ID}::${MODULE_NAME}::consultar_info_articulo`,
+    EXISTE_ARTICULO_EN_GUARDARROPA: `${PACKAGE_ID}::${MODULE_NAME}::existe_articulo_en_guardarropa`,
+    OBTENER_TOTAL_ARTICULOS: `${PACKAGE_ID}::${MODULE_NAME}::obtener_total_articulos_almacenados`,
+    CONSULTAR_SIGUIENTE_CLAVE: `${PACKAGE_ID}::${MODULE_NAME}::consultar_siguiente_clave`,
+    CONTAR_CREDITOS_ACTIVOS: `${PACKAGE_ID}::${MODULE_NAME}::contar_creditos_activos`,
+    ESTA_USUARIO_REGISTRADO: `${PACKAGE_ID}::${MODULE_NAME}::esta_usuario_registrado`,
+    OBTENER_TOTAL_SOCIOS: `${PACKAGE_ID}::${MODULE_NAME}::obtener_total_socios`,
 } as const;
 
-// Tipos de objetos con la estructura correcta
+// Tipos de objetos
 export const OBJECT_TYPES = {
-    CENTRO_DE_TRUEQUE: `${PACKAGE_ID}::${MODULE_NAME}::CentroDeTrueque`,
-    RECIBO: `${PACKAGE_ID}::${MODULE_NAME}::Recibo`,
+    GUARDARROPA_DIGITAL: `${PACKAGE_ID}::${MODULE_NAME}::GuardarropaDigital`,
+    REGISTRO_DE_SOCIOS: `${PACKAGE_ID}::${MODULE_NAME}::RegistroDeSocios`,
+    CARNET_DE_SOCIO: `${PACKAGE_ID}::${MODULE_NAME}::CarnetDeSocio`,
+    ARTICULO_ALMACENADO: `${PACKAGE_ID}::${MODULE_NAME}::ArticuloAlmacenado`,
     COLECCIONABLE: `${PACKAGE_ID}::${MODULE_NAME}::Coleccionable`,
-    COLECCIONABLE_TRANSFERIBLE: `${PACKAGE_ID}::${MODULE_NAME}::ColeccionableTransferible`,
 } as const;
 
 // Eventos del contrato
 export const EVENT_TYPES = {
-    CENTRO_CREADO: `${PACKAGE_ID}::${MODULE_NAME}::CentroCreadoEvent`,
-    OBJETO_DEPOSITADO: `${PACKAGE_ID}::${MODULE_NAME}::ObjetoDepositadoEvent`,
-    OBJETO_RETIRADO: `${PACKAGE_ID}::${MODULE_NAME}::ObjetoRetiradoEvent`,
-} as const;
-
-// Configuración de red
-export const NETWORK_CONFIG = {
-    devnet: "devnet",
-    testnet: "testnet",
-    mainnet: "mainnet",
+    GUARDARROPA_CREADO: `${PACKAGE_ID}::${MODULE_NAME}::GuardarropaCreatedEvent`,
+    CARNET_OBTENIDO: `${PACKAGE_ID}::${MODULE_NAME}::CarnetObtainedEvent`,
+    ARTICULO_ALMACENADO: `${PACKAGE_ID}::${MODULE_NAME}::ArticuloAlmacenadoEvent`,
+    ARTICULO_RETIRADO: `${PACKAGE_ID}::${MODULE_NAME}::ArticuloRetiradoEvent`,
 } as const;
 
 // URLs de exploradores
@@ -63,4 +59,8 @@ export const ERROR_MESSAGES = {
     TRANSACTION_FAILED: "Error en la transacción. Inténtalo de nuevo.",
     INSUFFICIENT_FUNDS: "Fondos insuficientes para la transacción",
     NETWORK_ERROR: "Error de conexión. Verifica tu red.",
+    USER_ALREADY_REGISTERED: "Ya tienes un carnet de socio",
+    NOT_CARNET_OWNER: "No eres el propietario del carnet de socio",
+    ARTICLE_NOT_FOUND: "El artículo especificado no existe",
+    ARTICLE_ALREADY_EXISTS: "El artículo ya existe",
 } as const;

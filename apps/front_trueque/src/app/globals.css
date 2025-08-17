@@ -2,20 +2,415 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variables CSS para temas */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+/* Estilos base para dark mode */
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Estilos personalizados para el guardarropa digital */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Animaciones suaves para las tarjetas */
+.card-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Estilos para los badges de estado */
+.status-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.status-badge.success {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-badge.warning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.status-badge.info {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.status-badge.error {
+  @apply bg-red-100 text-red-800;
+}
+
+/* Estilos para los botones de acción */
+.action-button {
+  @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 transition-colors duration-200;
+}
+
+.action-button.primary {
+  @apply text-white bg-blue-600 hover:bg-blue-700 focus:ring-blue-500;
+}
+
+.action-button.secondary {
+  @apply text-gray-700 bg-white border-gray-300 hover:bg-gray-50 focus:ring-blue-500;
+}
+
+.action-button.success {
+  @apply text-white bg-green-600 hover:bg-green-700 focus:ring-green-500;
+}
+
+.action-button.warning {
+  @apply text-white bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500;
+}
+
+/* Estilos para las tarjetas de objetos */
+.object-card {
+  @apply bg-white rounded-lg shadow-md border-2 transition-all duration-200 cursor-pointer;
+}
+
+.object-card:hover {
+  @apply shadow-lg;
+}
+
+.object-card.selected {
+  @apply border-blue-500 ring-2 ring-blue-200;
+}
+
+/* Estilos para los formularios */
+.form-input {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.form-textarea {
+  @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+/* Estilos para los modales */
+.modal-overlay {
+  @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
+}
+
+.modal-content {
+  @apply bg-white rounded-lg p-6 max-w-md w-full mx-4;
+}
+
+/* Estilos para las notificaciones */
+.notification {
+  @apply flex items-center p-4 rounded-lg border;
+}
+
+.notification.info {
+  @apply bg-blue-50 border-blue-200;
+}
+
+.notification.success {
+  @apply bg-green-50 border-green-200;
+}
+
+.notification.warning {
+  @apply bg-yellow-50 border-yellow-200;
+}
+
+.notification.error {
+  @apply bg-red-50 border-red-200;
+}
+
+/* Estilos para los contadores */
+.counter {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800;
+}
+
+/* Estilos para los iconos */
+.icon {
+  @apply w-5 h-5;
+}
+
+.icon-sm {
+  @apply w-4 h-4;
+}
+
+.icon-lg {
+  @apply w-6 h-6;
+}
+
+/* Estilos para las transiciones */
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+.slide-in {
+  animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Estilos para el estado de carga */
+.loading-spinner {
+  @apply animate-spin rounded-full border-b-2 border-blue-500;
+}
+
+.loading-text {
+  @apply ml-2 text-lg text-gray-600;
+}
+
+/* Estilos para las pestañas */
+.tab-button {
+  @apply py-2 px-1 border-b-2 font-medium text-sm transition-colors duration-200;
+}
+
+.tab-button.active {
+  @apply border-blue-500 text-blue-600;
+}
+
+.tab-button.inactive {
+  @apply border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300;
+}
+
+/* Estilos para las tarjetas de información */
+.info-card {
+  @apply bg-white rounded-lg shadow border p-6;
+}
+
+.info-card-header {
+  @apply flex items-center justify-between mb-4;
+}
+
+.info-card-title {
+  @apply text-lg font-medium text-gray-900;
+}
+
+.info-card-content {
+  @apply space-y-3;
+}
+
+.info-card-footer {
+  @apply mt-4 pt-4 border-t border-gray-200;
+}
+
+/* Estilos para los botones de acción en tarjetas */
+.card-action-button {
+  @apply w-full py-2 px-4 border rounded-md text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+}
+
+.card-action-button.primary {
+  @apply border-purple-300 text-purple-700 hover:bg-purple-50 focus:ring-purple-500;
+}
+
+.card-action-button.secondary {
+  @apply border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-blue-500;
+}
+
+/* Estilos para los mensajes de ayuda */
+.help-message {
+  @apply bg-blue-50 border border-blue-200 rounded-md p-3;
+}
+
+.help-message-icon {
+  @apply h-5 w-5 text-blue-400;
+}
+
+.help-message-content {
+  @apply ml-3;
+}
+
+.help-message-title {
+  @apply text-sm font-medium text-blue-800;
+}
+
+.help-message-text {
+  @apply text-sm text-blue-700 mt-1;
+}
+
+/* Estilos personalizados para SweetAlert2 */
+.swal2-popup {
+  @apply font-sans;
+}
+
+.swal2-title {
+  @apply text-gray-900 !important;
+}
+
+.swal2-html-container {
+  @apply text-gray-600 !important;
+}
+
+.swal2-confirm {
+  @apply bg-blue-600 hover:bg-blue-700 !important;
+}
+
+.swal2-cancel {
+  @apply bg-gray-500 hover:bg-gray-600 !important;
+}
+
+.swal2-success {
+  @apply bg-green-600 hover:bg-green-700 !important;
+}
+
+.swal2-error {
+  @apply bg-red-600 hover:bg-red-700 !important;
+}
+
+.swal2-warning {
+  @apply bg-yellow-600 hover:bg-yellow-700 !important;
+}
+
+.swal2-info {
+  @apply bg-blue-600 hover:bg-blue-700 !important;
+}
+
+/* Estilos para el footer de SweetAlert2 */
+.swal2-footer {
+  @apply border-t border-gray-200 pt-4 mt-4;
+}
+
+.swal2-footer a {
+  @apply text-blue-600 hover:text-blue-800 underline;
+}
+
+/* Estilos personalizados para componentes */
+@layer components {
+  .input-field {
+    @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400;
+  }
+
+  .textarea-field {
+    @apply w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm;
+  }
+
+  .btn-primary {
+    @apply bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-medium py-2 px-4 rounded-lg transition-colors;
+  }
+}
+
+/* Estilos para SweetAlert2 */
+.swal2-popup {
+  @apply font-sans;
+}
+
+.swal2-title {
+  @apply text-gray-900 !important;
+}
+
+.swal2-content {
+  @apply text-gray-700 !important;
+}
+
+.swal2-confirm {
+  @apply bg-blue-600 hover:bg-blue-700 !important;
+}
+
+.swal2-cancel {
+  @apply bg-gray-600 hover:bg-gray-700 !important;
+}
+
+/* Estilos para inputs y textareas */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  @apply bg-white dark:bg-gray-700 text-gray-900 dark:text-white;
+}
+
+/* Estilos para inputs con autocompletado */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #111827 !important;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #374151 inset !important;
+  -webkit-text-fill-color: #f9fafb !important;
+}
+
+/* Estilos para SweetAlert2 con tema dark */
+.dark .swal2-popup {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+.dark .swal2-title {
+  color: #f9fafb;
+}
+
+.dark .swal2-content {
+  color: #d1d5db;
+}
+
+.dark .swal2-confirm {
+  background-color: #3b82f6;
+}
+
+.dark .swal2-cancel {
+  background-color: #6b7280;
+}
+
+/* Transiciones suaves para cambios de tema */
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
