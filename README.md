@@ -96,15 +96,11 @@ sui move test
 
 ### Testnet Sui
 
-- **Package ID:** `0x5770c49882bf1cc89daa586389727a689ec9d094fd9664274ed14a637e909dab`
-- **GuardarropaDigital ID:** `0x0190bd90900cd9ae9b2f1c2f494d3b858ba8af4959281431266fc293f9c696da`
-- **RegistroDeSocios ID:** `0x5ffb9cd9fc12fb46cd499eea2ff7ced51f576d7ae8668444b80cfdbf29d8a28e`
+- **Package ID:** [`0x5770c49882bf1cc89daa586389727a689ec9d094fd9664274ed14a637e909dab`](https://suiscan.xyz/testnet/object/0x5770c49882bf1cc89daa586389727a689ec9d094fd9664274ed14a637e909dab/tx-blocks (https://suiscan.xyz/testnet/object/0x5770c49882bf1cc89daa586389727a689ec9d094fd9664274ed14a637e909dab/tx-blocks))
 
 ### Mainnet Sui
 
-- **Package ID:** `[PENDIENTE DE DESPLEGAR]`
-- **GuardarropaDigital ID:** `[PENDIENTE DE DESPLEGAR]`
-- **RegistroDeSocios ID:** `[PENDIENTE DE DESPLEGAR]`
+- **Package ID:** [`0xc5627e394d8c8dcf3591320dbac21fdb18ec737637c71b934009c1c6b2b5288e`](https://suiscan.xyz/mainnet/object/0xc5627e394d8c8dcf3591320dbac21fdb18ec737637c71b934009c1c6b2b5288e/tx-blocks (https://suiscan.xyz/mainnet/object/0xc5627e394d8c8dcf3591320dbac21fdb18ec737637c71b934009c1c6b2b5288e/tx-blocks))
 
 ## 📋 Cómo Usar
 
