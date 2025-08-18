@@ -9,8 +9,10 @@
   "scripts": {
     "test": "yarn workspace centro_trueque exec sui move test",
     "build:move": "yarn workspace centro_trueque exec sui move build",
+    "envs": "yarn workspace centro_trueque exec sui client envs",
     "balance": "yarn workspace centro_trueque exec sui client balance",
     "publish": "yarn workspace centro_trueque exec sui client publish",
+    "deploy": "node scripts/deploy.mjs",
     "dev": "yarn workspace front_trueque dev",
     "build:next": "yarn workspace front_trueque build",
     "start": "yarn workspace front_trueque start"

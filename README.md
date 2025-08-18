@@ -96,120 +96,25 @@ sui move test
 
 ### Testnet Sui
 
-- **Package ID:** [`0x5770c49882bf1cc89daa586389727a689ec9d094fd9664274ed14a637e909dab`](https://suiscan.xyz/testnet/object/0x5770c49882bf1cc89daa586389727a689ec9d094fd9664274ed14a637e909dab/tx-blocks (https://suiscan.xyz/testnet/object/0x5770c49882bf1cc89daa586389727a689ec9d094fd9664274ed14a637e909dab/tx-blocks))
+- **Package ID:** [`0x5770c49882bf1cc89daa586389727a689ec9d094fd9664274ed14a637e909dab`](https://suiscan.xyz/testnet/object/0x5770c49882bf1cc89daa586389727a689ec9d094fd9664274ed14a637e909dab/tx-blocks)
 
 ### Mainnet Sui
 
-- **Package ID:** [`0xc5627e394d8c8dcf3591320dbac21fdb18ec737637c71b934009c1c6b2b5288e`](https://suiscan.xyz/mainnet/object/0xc5627e394d8c8dcf3591320dbac21fdb18ec737637c71b934009c1c6b2b5288e/tx-blocks (https://suiscan.xyz/mainnet/object/0xc5627e394d8c8dcf3591320dbac21fdb18ec737637c71b934009c1c6b2b5288e/tx-blocks))
+- **Package ID:** [`0xc5627e394d8c8dcf3591320dbac21fdb18ec737637c71b934009c1c6b2b5288e`](https://suiscan.xyz/mainnet/object/0xc5627e394d8c8dcf3591320dbac21fdb18ec737637c71b934009c1c6b2b5288e/tx-blocks)
 
-## 📋 Cómo Usar
+---
 
-### 🔧 **Scripts del Monorepo**
+## 🚀 Configuración y Uso del Proyecto
 
-El proyecto incluye scripts Yarn para facilitar el desarrollo:
+### 📋 **Prerrequisitos**
 
-```json
-{
-  "scripts": {
-    "test": "yarn workspace centro_trueque exec sui move test",
-    "build:move": "yarn workspace centro_trueque exec sui move build",
-    "balance": "yarn workspace centro_trueque exec sui client balance",
-    "publish": "yarn workspace centro_trueque exec sui client publish",
-    "dev": "yarn workspace front_trueque dev",
-    "build:next": "yarn workspace front_trueque build",
-    "start": "yarn workspace front_trueque start"
-  }
-}
-```
+Para interactuar con el proyecto completo necesitas:
 
-### 🚀 **Inicio Rápido**
+- Tener `sui` CLI instalado y configurado con una cuenta con fondos
+- Fondos suficientes para pagar el gas (deploy y llamada inicial `crear_guardarropa`)
+- Node.js y Yarn instalados
 
-```bash
-# 1. Clonar repositorio
-git clone https://github.com/moises-cisneros/reto-sui.git
-cd reto-sui
-
-# 2. Instalar dependencias
-yarn install
-
-# 3. Compilar contrato Move
-yarn build:move
-
-# 4. Ejecutar frontend en desarrollo
-yarn dev
-
-# 5. Abrir http://localhost:3000
-```
-
-### 👨‍💻 **Para Desarrolladores del Contrato**
-
-```bash
-# Navegar al directorio del contrato
-cd packages/centro_trueque
-
-# Compilar contrato
-sui move build
-
-# Ejecutar tests
-sui move test
-
-# Desplegar en testnet
-sui client switch --env testnet
-sui client publish
-
-# Crear el sistema después del deploy
-sui client call \
-  --package <PACKAGE_ID> \
-  --module centro_trueque \
-  --function crear_guardarropa \
-  --gas-budget 10000000
-```
-
-### 🌐 **Para Desarrolladores del Frontend**
-
-```bash
-# Navegar al directorio del frontend
-cd apps/front_trueque
-
-# Instalar dependencias específicas
-yarn install
-
-# Ejecutar en desarrollo
-yarn dev
-
-# Compilar para producción
-yarn build
-
-# Ejecutar en producción
-yarn start
-```
-
-### 🎮 **Para Usuarios (Frontend)**
-
-1. Conecta tu wallet de Sui
-2. Obtén tu carnet de socio único
-3. Almacena artículos para obtener comprobantes de depósito
-4. Retira únicamente tus propios artículos usando tus comprobantes
-5. Personaliza tus coleccionables
-
-## 🎨 Características Únicas
-
-- **Un carnet por usuario:** Sistema garantizado de carnet único usando registro compartido
-- **Seguridad total:** Solo puedes retirar artículos que tú mismo depositaste
-- **Comprobantes de depósito:** Cada artículo almacenado genera un comprobante único en tu carnet
-- **Personalización:** Los NFTs pueden ser renombrados por su propietario
-- **Transparencia:** Todos los eventos son públicos y rastreables
-
-## 📊 Métricas del Sistema
-
-El contrato incluye funciones para consultar:
-
-- Total de artículos almacenados
-- Total de socios registrados  
-- Comprobantes de depósito activos por usuario
-- Historial de transacciones via eventos
-
-## 🏗️ Estructura del Proyecto Monorepo
+### 🏗️ **Estructura del Monorepo**
 
 ```bash
 reto-sui/
@@ -229,9 +134,111 @@ reto-sui/
 │       ├── package.json
 │       └── tailwind.config.js
 ├── package.json                 # Configuración del monorepo
-├── yarn.lock
-└── LICENSE                      # MIT License
+└── yarn.lock
 ```
+
+### 🔧 **Scripts del Monorepo**
+
+```json
+{
+  "scripts": {
+    "test": "yarn workspace centro_trueque exec sui move test",
+    "build:move": "yarn workspace centro_trueque exec sui move build",
+    "envs": "yarn workspace centro_trueque exec sui client envs",
+    "balance": "yarn workspace centro_trueque exec sui client balance",
+    "publish": "yarn workspace centro_trueque exec sui client publish",
+    "deploy": "node scripts/deploy.mjs",
+    "dev": "yarn workspace front_trueque dev",
+    "build:next": "yarn workspace front_trueque build",
+    "start": "yarn workspace front_trueque start"
+  }
+}
+```
+
+### 🚀 **Inicio Rápido**
+
+#### 1) **Instalar dependencias del monorepo**
+
+```bash
+git clone https://github.com/moises-cisneros/reto-sui.git
+cd reto-sui
+yarn install
+```
+
+Esto instala tanto las dependencias del contrato como del frontend (Next.js incluidas).
+
+#### 2) **Desplegar contrato y configurar variables del frontend**
+
+```bash
+# Testnet (alias soportado: --testnet)
+yarn deploy:contract --testnet
+
+# o Mainnet
+yarn deploy:contract --mainnet
+```
+
+El script automatiza todo el proceso:
+
+- Cambia el entorno de `sui client` a `testnet` o `mainnet`
+- Publica el paquete Move en `packages/centro_trueque` y captura `packageId`
+- Llama `crear_guardarropa` y captura `guardarropa_id` y `registro_id` del evento `GuardarropaCreatedEvent`
+- Escribe `apps/front_trueque/.env.local` con:
+  - `NEXT_PUBLIC_SUI_NETWORK`
+  - `NEXT_PUBLIC_PACKAGE_ID`
+  - `NEXT_PUBLIC_GUARDARROPA_ID`
+  - `NEXT_PUBLIC_REGISTRO_SOCIOS_ID`
+- Crea/actualiza `apps/front_trueque/.env.local.example` con la estructura esperada
+
+#### 3) **Ejecutar el frontend en local**
+
+```bash
+yarn dev
+# Abrir http://localhost:3000
+```
+
+En el header verás una banderita con la red activa (`testnet`/`mainnet`).
+
+### 👨‍💻 **Para Desarrolladores del Contrato**
+
+```bash
+# Navegar al directorio del contrato
+cd packages/centro_trueque
+
+# Compilar contrato
+sui move build
+
+# Ejecutar tests
+sui move test
+
+# Desplegar manualmente en testnet
+sui client switch --env testnet
+sui client publish
+
+# Crear el sistema después del deploy
+sui client call \
+  --package <PACKAGE_ID> \
+  --module centro_trueque \
+  --function crear_guardarropa \
+  --gas-budget 10000000
+```
+
+### 🌐 **Para Desarrolladores del Frontend**
+
+```bash
+# Navegar al directorio del frontend
+cd apps/front_trueque
+
+# Ejecutar en desarrollo
+yarn dev
+
+# Compilar para producción
+yarn build
+
+# Ejecutar en producción
+yarn start
+```
+
+---
 
 ## 🔐 Sistema de Seguridad
 
@@ -248,6 +255,23 @@ reto-sui/
 2. **Almacenamiento:** "Artículo X" se guarda en el guardarropa compartido
 3. **Retiro:** Solo Usuario A puede retirar "Artículo X" usando su comprobante
 4. **Conversión:** "Artículo X" se convierte en NFT transferible para Usuario A
+
+## 🎨 Características Únicas
+
+- **Un carnet por usuario:** Sistema garantizado de carnet único usando registro compartido
+- **Seguridad total:** Solo puedes retirar artículos que tú mismo depositaste
+- **Comprobantes de depósito:** Cada artículo almacenado genera un comprobante único en tu carnet
+- **Personalización:** Los NFTs pueden ser renombrados por su propietario
+- **Transparencia:** Todos los eventos son públicos y rastreables
+
+## 📊 Métricas del Sistema
+
+El contrato incluye funciones para consultar:
+
+- Total de artículos almacenados
+- Total de socios registrados  
+- Comprobantes de depósito activos por usuario
+- Historial de transacciones via eventos
 
 ## 🎯 Casos de Uso
 

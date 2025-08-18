@@ -21,6 +21,10 @@ export function ClientLayout({ children }: { children: React.ReactNode }) {
                             </p>
                         </div>
                         <div className="flex items-center space-x-4">
+                            {/* Badge de red */}
+                            <span className="px-2 py-1 text-xs rounded-full bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-200 border border-indigo-200 dark:border-indigo-800">
+                                {process.env.NEXT_PUBLIC_SUI_NETWORK === 'mainnet' ? 'mainnet' : 'testnet'}
+                            </span>
                             {/* Botón de cambio de tema */}
                             <button
                                 onClick={toggleTheme}

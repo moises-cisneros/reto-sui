@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Guardarropa Digital - Sui Blockchain",
   description: "Tu guardarropa digital para intercambiar artículos únicos en Sui blockchain",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
